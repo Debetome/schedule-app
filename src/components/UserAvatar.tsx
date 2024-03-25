@@ -10,7 +10,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ imageUrl }: UserAvatarProps) =>
     const [top, setTop] = useState<number | null>()
     const [left, setLeft] = useState<number | null>()
 
-    const boundsRef = useRef<HTMLDivElement | null>(null)    
+    const boundsRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
         const { top: elementTop, left: elementLeft } = boundsRef.current!.getBoundingClientRect()
@@ -30,9 +30,9 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ imageUrl }: UserAvatarProps) =>
   
     return (
       <>
-      <div className="w-20 h-20 flex items-center justify-center mx-1">
+      <div className="w-14 h-14 flex items-center justify-center mx-1">
         <a            
-            className="w-14 h-14 rounded-btn cursor-pointer"            
+            className="w-10 h-10 rounded-btn cursor-pointer"            
             onClick={handleClick}
             ref={boundsRef as RefObject<HTMLAnchorElement>}>
             <img 

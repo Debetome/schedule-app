@@ -26,9 +26,9 @@ const NotificationsBell: React.FC = () => {
 
     return (
       <>
-      <div className="w-20 h-20 flex items-center justify-center ml-1">
+      <div className="w-14 h-14 flex items-center justify-center ml-1">
         <a            
-            className="text-3xl rounded-btn cursor-pointer"            
+            className="text-2xl rounded-btn cursor-pointer"            
             onClick={handleClick}
             ref={boundsRef as RefObject<HTMLAnchorElement>}>
             <i className="fa-solid fa-bell"></i>

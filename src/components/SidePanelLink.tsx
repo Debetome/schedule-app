@@ -11,7 +11,7 @@ function SidePanelLink({ text, to, icon, extraClasses }: SidePanelLinkProps) {
   return (
     <Link 
       className={
-         `w-full h-24 flex items-center justify-center text-xl overflow-hidden hover:bg-gray-200 ${extraClasses ? extraClasses : ""}`
+        `w-full h-20 flex items-center justify-center text-lg overflow-hidden text-gray-600 hover:bg-gray-200 ${extraClasses ? extraClasses : ""}`
       } 
       to={to}>
       {icon ? <i className={`${icon} mr-6`}></i> : ""}

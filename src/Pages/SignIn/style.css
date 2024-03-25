@@ -1,0 +1,21 @@
+.login-form {
+    min-width: 280px;
+    max-width: 480px;
+    min-height: 430px;
+    max-height: 482px;
+    animation: movedown 0.4s linear forwards;    
+}
+
+.login-logo {
+    min-width: 100px;
+    min-height: 100px;
+}
+
+@keyframes movedown {
+    0% {
+        opacity: 0;        
+    }
+    100% {
+        opacity: 1;        
+    }
+}

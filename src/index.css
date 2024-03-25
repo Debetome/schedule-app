@@ -4,8 +4,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .general-opacity {
+        background: rgba(255, 255, 255, 0.85);        
+        color: #000;        
+    }
+
+    .general-opacity::before {
+        filter: blur(5px);
+    }
+}
+
 * {    
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
+}
+
+body {
+    background: #22c1c3;
+    background: -webkit-linear-gradient(to right, #fdbb2d, #22c1c3);
+    background: linear-gradient(to right, #fdbb2d, #22c1c3);
+    overflow: hidden;    
 }
