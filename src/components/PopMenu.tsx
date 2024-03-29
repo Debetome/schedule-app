@@ -34,7 +34,7 @@ const PopMenu: React.FC<PopMenuProps> = (props: PopMenuProps) => {
   return (
     <>
       {props.isOpen ? (
-        <div className="absolute right-0 w-48 bg-white border rounded-md shadow-lg" style={style}>
+        <div className="absolute right-0 w-48 bg-white border rounded-md shadow-lg z-10" style={style}>
           <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Menu Item 1</a>
           <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Menu Item 2</a>
           <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Menu Item 3</a>
