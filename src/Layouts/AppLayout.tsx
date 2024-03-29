@@ -11,18 +11,18 @@ import Calendar from "../Pages/Calendar";
 import TimeLinePage from "../Pages/TimeLinePage";
 
 function AppLayout() {
-  const [sidepanel, setSidepanel] = useState(true)
+  const [sidepanel, setSidepanel] = useState(true)  
 
   const hideShowSideBar = () => {
     setSidepanel(!sidepanel)
-  }
+  }  
 
   return (
     <div className="h-full w-full flex flex-col">
       <div className="bg-white w-full h-14 shadow-md flex flex-row">
         <a onClick={hideShowSideBar} className="w-14 h-14 mr-auto flex items-center justify-center text-2xl cursor-pointer">
           <i className="fa-solid fa-bars"></i>
-        </a>
+        </a>        
         <SettingsButton/>
         <NotificationsBell/>
         <UserAvatar/>
