@@ -1,9 +1,18 @@
-import React, { createContext, useState, ReactNode, useContext, Dispatch, SetStateAction } from "react";
+import React, { 
+    createContext, 
+    useState, 
+    useEffect, 
+    useContext, 
+    Dispatch, 
+    SetStateAction, 
+    ReactNode 
+} from "react";
 
-interface Auth {        
-    user: string
-    pwd: string
-    accessToken: string
+import { axiosPrivate } from "../api/axios"
+
+interface Auth {
+    accessToken: string       
+    isAuthenticated: boolean
 }
 
 interface AuthContextType {
@@ -12,9 +21,8 @@ interface AuthContextType {
 }
 
 const initialAuthState: Auth = {
-    user: "",
-    pwd: "",
-    accessToken: ""
+    accessToken: "",
+    isAuthenticated: false,
 };
 
 const AuthContext = createContext<AuthContextType>({ auth: initialAuthState, setAuth: () => {} });
@@ -23,6 +31,16 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [auth, setAuth] = useState<Auth>(initialAuthState);
+
+    useEffect(() => {
+        const checkAuth = async() => {
+            const response = await axiosPrivate.post("/check")
+            if (response.status === 200)
+                setAuth({ accessToken: "", isAuthenticated: true })
+        }
+
+        checkAuth()
+    }, [])
 
     return (
         <AuthContext.Provider value={{ auth, setAuth }}>

@@ -6,13 +6,13 @@ import RequireAuth from "./components/RequireAuth"
 
 function App() {
   return (
-    <div className="h-screen w-screen flex flex-col text-gray-500">
-      <Routes>
-        <Route path="/sign-in" element={<SignIn/>} />
-        <Route element={<RequireAuth/>} >
+    <div className="h-screen w-screen flex flex-col text-gray-500">      
+      <Routes>        
+        <Route path="/" element={<RequireAuth />}>
           <Route path="/app/*" element={<AppLayout />} />
-        </Route>
-      </Routes>
+        </Route>        
+        <Route path="/sign-in" element={<SignIn />} />          
+      </Routes>      
     </div>
   )
 }
