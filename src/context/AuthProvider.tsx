@@ -8,7 +8,7 @@ import React, {
     ReactNode 
 } from "react";
 
-import { axiosPrivate } from "../api/axios"
+import { axiosPrivate } from "../services/authService"
 
 interface Auth {
     accessToken: string       

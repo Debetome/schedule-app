@@ -18,9 +18,8 @@ function Activities() {
         <div className="bg-white w-11/12 h-5/6 flex flex-col items-center rounded-lg shadow-md general-opacity activities-container">
         <div className="bg-white w-full h-16 flex flex-row border-b-2 border-gray-400 rounded-t-lg">
             <input type="text" placeholder="Search activities" className="w-full h-full px-4 rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"/>
-            <button className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg flex items-center">
-                <i className="fas fa-plus mr-2"></i>
-                New
+            <button className="px-5 bg-green-500 hover:bg-green-600 text-white rounded-lg flex items-center justify-center text-lg">
+                <i className="fas fa-plus"></i>                
             </button>
 
         </div>
