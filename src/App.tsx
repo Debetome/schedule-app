@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 
-import AppLayout from "./Layouts/AppLayout"
+import ActivityLayout from "./Layouts/ActivityLayout"
 import SignIn from "./Pages/SignIn"
 import RequireAuth from "./components/RequireAuth"
 
@@ -9,7 +9,7 @@ function App() {
     <div className="h-screen w-screen flex flex-col text-gray-500">      
       <Routes>        
         <Route path="/" element={<RequireAuth />}>
-          <Route path="/app/*" element={<AppLayout />} />
+          <Route path="/app/*" element={<ActivityLayout />} />
         </Route>        
         <Route path="/sign-in" element={<SignIn />} />          
       </Routes>      

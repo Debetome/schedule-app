@@ -10,7 +10,7 @@ import Activities from "../Pages/Activities";
 import Calendar from "../Pages/Calendar";
 import TimeLinePage from "../Pages/TimeLinePage";
 
-function AppLayout() {
+function ActivityLayout() {
   const [sidepanel, setSidepanel] = useState(true)  
 
   const hideShowSideBar = () => {
@@ -44,4 +44,4 @@ function AppLayout() {
   )
 }
 
-export default AppLayout
+export default ActivityLayout
