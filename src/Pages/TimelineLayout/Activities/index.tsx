@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 
-import ActivityItem from "../../components/ActivityItem"
-import activities from "../../data/dummy_data"
+import ActivityItem from "../../../components/ActivityItem"
+import activities from "../../../data/dummy_data"
 
 import "./style.css"
 

@@ -1,0 +1,33 @@
+.timeline-container {
+    background: #f0f0f0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.grid-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 28px;
+    padding: 20px;
+}
+  
+.grid-item {    
+    padding: 20px;
+    border-radius: 8px;
+    height: 320px;
+}
+
+@media screen and (max-width: 468px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media screen and (max-width: 276px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}

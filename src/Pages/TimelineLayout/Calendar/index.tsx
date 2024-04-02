@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 
-import { getMonthName, getMonthDays, getMonthWeekDays, generateDays } from "../../utils/calendar"
-import Legend from "../../components/Legend"
+import { getMonthName, getMonthDays, getMonthWeekDays, generateDays } from "../../../utils/calendar"
+import Legend from "../../../components/Legend"
 
 import "./style.css"
 
