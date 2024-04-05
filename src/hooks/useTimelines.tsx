@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { axiosPrivate } from "../services/crudService";
+import { axiosDebug } from "../services/crudService";
 
-const queryClient = useQueryClient();
+const axiosPrivate = axiosDebug
 const queryKey = "timelines";
 
 interface MutationBody {
@@ -9,6 +9,8 @@ interface MutationBody {
 }
 
 const useTimelines = () => {
+    const queryClient = useQueryClient();    
+
     const timelinesQuery = useQuery({
         queryKey: [queryKey],
         queryFn: async () => {
