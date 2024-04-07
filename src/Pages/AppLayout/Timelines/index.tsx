@@ -1,21 +1,36 @@
+import { useState, useEffect } from "react"
+
 import TimelineItem from "../../../components/TimelineItem"
+
 import useTimelines from "../../../hooks/useTimelines"
+import useWindowSize from "../../../hooks/useWindowSize"
 
 import "./style.css"
 
 function Timelines() {
-    const [timelines, setTimelines] = useTimelines()    
+    const [timelines, _setTimelines] = useTimelines()
+    const windowSize = useWindowSize()
 
-    console.log(timelines?.data?.timelines)
+    const [columns, setColumns] = useState(0)
 
-    return (
-    <div className="timeline-container">
-        <div className="grid-container overflow-y-auto mb-20">            
+    useEffect(() => {
+        const gridColumns = Math.floor(windowSize[0] / (300 * timelines?.data?.timelines.length))        
+        setColumns(gridColumns)
+    }, [windowSize])
+
+    return (    
+        <div className="grid-container overflow-y-auto mb-20" style={{ gridTemplateColumns: `repeat(${columns}, minmax(250px, 1fr))` }}>
             {timelines?.data?.timelines.map((item: any) => {
-                return <TimelineItem key={item.id} name={item.name} created={item.created} updated={item.updated}/>
-            })}            
+                return (
+                    <TimelineItem 
+                        key={item.id} 
+                        name={item.name} 
+                        created={new Date(item.createdAt)} 
+                        updated={new Date(item.updatedAt)}
+                    />
+                )
+            })}
         </div>
-    </div>
     )
 }
 

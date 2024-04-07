@@ -1,4 +1,5 @@
 import { memo } from "react"
+import "./style.css"
 
 const dateFormat: Intl.DateTimeFormatOptions = { month: 'long', day: 'numeric', year: 'numeric' };
 
@@ -12,17 +13,17 @@ const TimelineItem = memo((props: TimelineItemProps) => {
     const creationDate = new Date(props.created).toLocaleDateString("en-US", dateFormat)
     const updateDate = new Date(props.updated).toLocaleDateString("en-US", dateFormat)
 
-    return (
+    return (        
         <div className="grid-item max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
             <img className="w-full h-32 object-cover" src="https://via.placeholder.com/300" alt="Timeline Preview"/>
         
             <div className="p-4">
             <h2 className="text-xl font-semibold text-gray-800">{props.name}</h2>
             <p className="text-sm text-gray-600 mt-1">Created: 
-                <span className="font-medium">{creationDate}</span>
+                <span className="font-medium"> {creationDate}</span>
             </p>
             <p className="text-sm text-gray-600">Last Updated: 
-                <span className="font-medium">{updateDate}</span>
+                <span className="font-medium"> {updateDate}</span>
             </p>
         
             <div className="mt-4 flex justify-between items-center">
@@ -34,7 +35,7 @@ const TimelineItem = memo((props: TimelineItemProps) => {
                 </button>
             </div>
             </div>
-        </div>
+        </div>        
     )
 })
 

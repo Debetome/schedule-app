@@ -1,4 +1,4 @@
-import React from "react"
+import { memo } from "react"
 
 interface ActivityItemProps {
     title: string
@@ -7,7 +7,7 @@ interface ActivityItemProps {
     done: boolean
 }
 
-const ActivityItem: React.FC<ActivityItemProps> = (props: ActivityItemProps) => {
+const ActivityItem = memo((props: ActivityItemProps) => {
   return (
     <tr className="border-gray-250 border-b-2 text-base text-gray-700">
         <td className="px-6 py-4 whitespace-nowrap">{props.title}</td>
@@ -27,6 +27,6 @@ const ActivityItem: React.FC<ActivityItemProps> = (props: ActivityItemProps) => 
         </td>
     </tr>
   )
-}
+})
 
 export default ActivityItem
