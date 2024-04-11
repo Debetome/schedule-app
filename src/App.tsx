@@ -1,8 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 
 import AppLayout from "./Layouts/AppLayout"
-import TimelineLayout from "./Layouts/TimelineLayout"
-import SignIn from "./Pages/TimelineLayout/SignIn"
+import SignIn from "./Pages/AuthLayout/SignIn"
 import RequireAuth from "./components/RequireAuth"
 
 function App() {
@@ -10,10 +9,9 @@ function App() {
     <div className="h-screen w-screen flex flex-col text-gray-500">      
       <Routes>        
         <Route path="/" element={<RequireAuth />}>
-          <Route path="/app/*" element={<TimelineLayout />} />
-        </Route>        
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/timelines" element={<AppLayout/>} />
+          <Route path="/app/*" element={<AppLayout />} />
+        </Route>
+        <Route path="/sign-in" element={<SignIn />} />        
       </Routes>      
     </div>
   )

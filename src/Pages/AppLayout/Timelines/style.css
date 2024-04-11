@@ -1,5 +1,4 @@
-.grid-container {
-    background: #f0f0f0;
+.grid-container {    
     display: grid;
     width: auto;
     height: 100%;        

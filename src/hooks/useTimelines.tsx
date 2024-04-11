@@ -1,34 +1,31 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { axiosDebug } from "../services/crudService";
 
-const axiosPrivate = axiosDebug
-const queryKey = "timelines";
+import { axiosCrud } from "../services/crudService";
+import useAxiosPrivate from "./useAxiosPrivate";
 
 interface MutationBody {
-    name: string;    
+    name: string
 }
 
 const useTimelines = () => {
-    const queryClient = useQueryClient();    
+    const axiosPrivate = useAxiosPrivate(axiosCrud)    
+    const queryClient = useQueryClient()
+    const queryKey = "timelines"    
 
-    const timelinesQuery = useQuery({
+    const { data } = useQuery({
         queryKey: [queryKey],
-        queryFn: async () => {
-            const { data } = await axiosPrivate.get(`/timelines/list`);
-            return data;
+        queryFn: async () => {            
+            const { data } = await axiosPrivate.get(`/timelines/list`)
+            return data.timelines
         }
     });
-
+    
     const newTimelineMut = useMutation({
-        mutationFn: async (data: MutationBody) => {
-            await axiosPrivate.post(`/timelines/insert`, data);
-        },
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: [queryKey] });
-        }
-    });
+        mutationFn: async (data: MutationBody) => await axiosPrivate.post(`/timelines/insert`, data),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: [queryKey] })
+    })
 
-    return [timelinesQuery, newTimelineMut];
-};
+    return [data, newTimelineMut]
+}
 
 export default useTimelines;

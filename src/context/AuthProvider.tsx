@@ -8,7 +8,7 @@ import React, {
     ReactNode 
 } from "react";
 
-import { axiosPrivate } from "../services/authService"
+import { axiosAuth } from "../services/authService"
 
 interface Auth {
     accessToken: string       
@@ -34,9 +34,16 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     useEffect(() => {
         const checkAuth = async() => {
-            const response = await axiosPrivate.post("/check")
-            if (response.status === 200)
-                setAuth({ accessToken: "", isAuthenticated: true })
+            const response = await axiosAuth.post("/refresh")
+            if (response.status !== 200) {
+                setAuth({ accessToken: "", isAuthenticated: false })
+                await axiosAuth.post("/logout")
+            }
+            
+            setAuth({ 
+                accessToken: response.data.accessToken,
+                isAuthenticated: true 
+            })
         }
 
         checkAuth()

@@ -3,9 +3,7 @@ import { Navigate, Outlet } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 
 const RequireAuth: React.FC = () => {
-    const { auth } = useAuth()        
-
-    console.log(auth)
+    const { auth } = useAuth()    
 
     return (
         auth.isAuthenticated

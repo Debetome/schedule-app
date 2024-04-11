@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
+
 import useAuth from "../../../hooks/useAuth";
 import axios from "../../../services/authService"; 
 
@@ -52,8 +53,7 @@ function SignIn() {
             setAuth(authData)
             setUser('')
             setPwd('')
-
-            localStorage.setItem("auth", JSON.stringify(authData))
+            
             navigate("/app");
 
         } catch (error: any) {
@@ -66,7 +66,7 @@ function SignIn() {
         auth.isAuthenticated ? <Navigate to="/app"/> :
         <section className="w-full h-full flex items-center justify-center shadow-md overflow-y-auto text-gray-700">
             <form
-                className="login-form bg-white w-1/3 h-3/4 flex items-center justify-center flex-col rounded-lg"
+                className="bg-white w-1/3 h-3/4 flex items-center justify-center flex-col rounded-lg"
                 onSubmit={handleSubmit}>
                 <img
                     className="login-logo w-1/4 h-1/4 mb-4"                    
