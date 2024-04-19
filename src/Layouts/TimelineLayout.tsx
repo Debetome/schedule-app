@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet, useParams } from "react-router-dom";
 import { useState } from "react";
 
 import SidePanel from "../components/SidePanel";
@@ -11,7 +11,8 @@ import Calendar from "../Pages/TimelineLayout/Calendar";
 import TimeLinePage from "../Pages/TimelineLayout/TimeLinePage";
 
 function TimelineLayout() {
-  const [sidepanel, setSidepanel] = useState(true)  
+  const [sidepanel, setSidepanel] = useState(true)
+  const { timelineId } = useParams()
 
   const hideShowSideBar = () => {
     setSidepanel(!sidepanel)
@@ -28,12 +29,13 @@ function TimelineLayout() {
         <UserAvatar/>
       </div>
       <div className="h-full w-full flex flex-row">        
-        <SidePanel visible={sidepanel}/>                
+        <SidePanel visible={sidepanel} timelineId={timelineId!}/>                
         <div className="w-full h-full flex flex-col">        
-          <div className="w-full h-full flex items-center justify-center overflow-y-auto">
-            <Routes>              
-              <Route index element={<Activities />} />
-              <Route path="activities" element={<Activities />} />
+          <div className="w-full h-full flex items-center justify-center overflow-y-auto">            
+            <Outlet/>
+            <Routes>           
+              <Route index element={<Activities timelineId={timelineId!}/>} />            
+              <Route path="activities" element={<Activities timelineId={timelineId!}/>} />
               <Route path="calendar" element={<Calendar />} />
               <Route path="timeline" element={<TimeLinePage />} />              
             </Routes>

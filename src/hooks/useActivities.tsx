@@ -3,10 +3,21 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosCrud } from "../services/crudService";
 import useAxiosPrivate from "./useAxiosPrivate";
 
-interface MutationBody {
-    title: string;
-    desc: string;
-    deadline: Date;
+interface InsertBody {
+    title: string
+    desc: string
+    deadline: Date
+}
+
+interface UpdateBody {    
+    title?: string
+    desc?: string
+    deadline?: Date
+}
+
+interface UpdateProps {
+    activityId: string,
+    body: UpdateBody
 }
 
 const useActivities = (timelineId: string) => {
@@ -14,24 +25,42 @@ const useActivities = (timelineId: string) => {
     const queryClient = useQueryClient();
     const queryKey = "activities";
 
-    const activitiesQuery = useQuery({
+    const { data, isLoading, error } = useQuery({
         queryKey: [queryKey, timelineId],
         queryFn: async () => {
             const { data } = await axiosPrivate.get(`/activities/list/${timelineId}`);
-            return data;
+            return data.activities;
         }
     });
 
-    const newActivityMut = useMutation({
-        mutationFn: async (data: MutationBody) => {
-            await axiosPrivate.post(`/activities/insert/${timelineId}`, data);
+    const insertActivity = useMutation({
+        mutationFn: async (data: InsertBody) => await axiosPrivate.post(`/activities/insert/${timelineId}`, data),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: [queryKey, timelineId] })
+    });
+
+    const updateActivity = useMutation({
+        mutationFn: async (data: UpdateProps) => {
+            const { activityId, body } = data
+            await axiosPrivate.put(`/activities/update/?timelineId=${timelineId}&activityId=${activityId}`, body)
         },
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: [queryKey, timelineId] });
-        }
-    });
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: [queryKey, timelineId] })
+    })
 
-    return [activitiesQuery, newActivityMut];
+    const deleteActivity = useMutation({
+        mutationFn: async (activityId: string) => {
+            await axiosPrivate.delete(`/activities/delete/?timelineId=${timelineId}&activityId=${activityId}`)
+        },
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: [queryKey, timelineId] })
+    })
+
+    return { 
+        data, 
+        insertActivity, 
+        updateActivity, 
+        deleteActivity, 
+        isLoading, 
+        error
+    }
 };
 
 export default useActivities;

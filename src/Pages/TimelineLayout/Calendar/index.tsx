@@ -77,9 +77,8 @@ function Calendar() {
                     <div className="w-1/7">Saturday</div>
                 </div>
                 <div className="grid grid-cols-7 gap-4 text-base text-gray-700">
-                    {monthWeekDays ? generateDays(monthWeekDays[0], monthDays).map((day: string) => {
-                        console.log(monthWeekDays)
-                        return <div className="text-center py-2 hover:bg-gray-200 rounded-lg">{day}</div>;
+                    {monthWeekDays ? generateDays(monthWeekDays[0], monthDays).map((day: string, index: number) => {                        
+                        return <div key={index} className="text-center py-2 hover:bg-gray-200 rounded-lg">{day}</div>;
                     }) : ""}
                 </div>
             </div>

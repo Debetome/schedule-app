@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect, RefObject } from "react"
 import PopMenu from "./PopMenu";
 
+import UserImage from "/user.png"
+
 interface UserAvatarProps {
     imageUrl?: string
 }
@@ -36,7 +38,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ imageUrl }: UserAvatarProps) =>
             onClick={handleClick}
             ref={boundsRef as RefObject<HTMLAnchorElement>}>
             <img 
-                src={imageUrl ? imageUrl : "src/assets/user.png"} 
+                src={imageUrl ? imageUrl : UserImage} 
                 alt="User Icon"                
             />
         </a>        

@@ -14,7 +14,7 @@ function Timelines() {
     const [columns, setColumns] = useState(0)
 
     useEffect(() => {
-        const gridColumns = Math.floor(windowSize[0] / 300)        
+        const gridColumns = Math.floor(windowSize[0] / 300)
         setColumns(gridColumns)
     }, [windowSize])    
 
@@ -22,10 +22,11 @@ function Timelines() {
         <div className="grid-container overflow-y-auto mb-20" style={{ gridTemplateColumns: `repeat(${columns}, minmax(250px, 1fr))` }}>
             {timelines?.map((item: any) => {
                 return (                    
-                    <TimelineItem 
-                        key={item.id} 
+                    <TimelineItem
+                        key={item.id}
+                        id={item.id}
                         name={item.name} 
-                        created={new Date(item.createdAt)} 
+                        created={new Date(item.createdAt)}
                         updated={new Date(item.updatedAt)}
                     />                    
                 )

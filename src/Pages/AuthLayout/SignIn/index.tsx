@@ -4,11 +4,12 @@ import { useNavigate, Navigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import axios from "../../../services/authService"; 
 
+import UserIcon from "/user.png"
 import "./style.css";
 
 function SignIn() {
     const { auth, setAuth } = useAuth()
-    const navigate = useNavigate()    
+    const navigate = useNavigate()
 
     const userRef = useRef<HTMLInputElement>(null)
     const errorRef = useRef<HTMLParagraphElement>(null)
@@ -64,18 +65,18 @@ function SignIn() {
 
     return (
         auth.isAuthenticated ? <Navigate to="/app"/> :
-        <section className="w-full h-full flex items-center justify-center shadow-md overflow-y-auto text-gray-700">
+        <section className="sign-container w-full h-full flex items-center justify-center shadow-md overflow-y-auto text-gray-700">
             <form
-                className="bg-white w-1/3 h-3/4 flex items-center justify-center flex-col rounded-lg"
+                className="bg-white w-1/3 h-3/4 flex items-center justify-center flex-col rounded-lg shadow-md"
                 onSubmit={handleSubmit}>
                 <img
                     className="login-logo w-1/4 h-1/4 mb-4"                    
-                    src="src/assets/user.png" // Double check the path to your image
+                    src={UserIcon} // Double check the path to your image
                     alt="User icon"
                 />
                 <h2 className="mb-6 h-8 text-3xl">Sign in</h2>
                 <input
-                    className="mb-6 w-4/5 min-w-280 h-10 p-2 border-2 rounded-md shadow-xs"
+                    className="mb-6 w-4/5 min-w-280 h-10 p-3 rounded-lg shadow-xs"
                     ref={userRef}
                     type="text"
                     placeholder="Username"
@@ -83,13 +84,13 @@ function SignIn() {
                     onChange={(e) => setUser(e.target.value)}
                 />
                 <input
-                    className="mb-6 w-4/5 h-10 p-2 border-2 rounded-md shadow-xs"
+                    className="mb-6 w-4/5 h-10 p-3 rounded-lg shadow-xs"
                     type="password"
                     placeholder="Password"
                     value={pwd}
                     onChange={(e) => setPwd(e.target.value)}
                 />
-                <button className="w-4/5 h-10 rounded-md shadow-xs mb-4 hover:brightness-90" style={loginBtnStyle} type="submit">Sign in</button>
+                <button className="w-4/5 h-10 rounded-lg shadow-xs mb-4 hover:brightness-90" style={loginBtnStyle} type="submit">Sign in</button>
                 <a className="text-sm text-gray-500 underline cursor-pointer">Forgot password?</a>
                 <p ref={errorRef} className={`text-red-500 mt-4 ${errorMsg ? "errmsg" : "offscreen"}`} aria-live="assertive">{errorMsg}</p>
             </form>
